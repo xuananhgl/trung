@@ -39,13 +39,47 @@ class VisualEditorsController extends AppController
         $testimonials = $this->Testimonials->find('all', [
             'limit' => 3])->all();
 
-        $articles = $this->Articles->find('all',[
+        $Articles = $this->Articles->find('all',[
             'limit'=>4,
             'order'=> 'rand()',
         ])->all();
 
-        $this->set(compact('banner','testimonials','articles','banners'));
-        debug($banner->title);
+        $this->set(compact('banner','testimonials','Articles','banners'));
+
+        $testimonial = $this->Testimonials->get($pres[0]['id'], [
+            'finder' => 'translations',
+                                        ]);
+        $article = $this->Articles->get($article[3]['id_article'], [
+            'finder' => 'translations',
+                                        ]);
+        $banner = $this->Banners->get($post->article2, [
+            'finder' => 'translations',
+                                        ]);
+
+        $post = $this->Posts->get($post['id_posts']);
+
+            // DATA PRESS
+     if ($this->request->is(['post', 'put'])) {
+
+          $this->Testimonials->patchEntity($testimonial, $this->request->getData());    
+           $this->Banners->patchEntity($banner, $this->request->getData());
+           $this->Articles->patchEntity($article1,$this->request->getData() );
+           $this->Bars->patchEntity($bar, $this->request->getData());
+           $this->Posts->patchEntity($post, $this->request->getData());  
+         if ($this->Testimonials->save($testimonial)  && $this->Banners->save($banner)
+             && $this->Articles->save($article) && $this->Posts->save($post)) {
+             $this->Flash->success(__('Your banner has been updated.'));
+             return $this->redirect(['action' => 'home']);
+         }
+         $this->Flash->error(__('Unable to update your banner.'));
+     }
+
+
+            $this->set('banner', $banner);
+            $this->set('testimonial', $testimonial);      
+            $this->set('article', $article);
+            $this->set('post', $post);
+
        
 
 
