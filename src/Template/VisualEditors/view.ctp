@@ -76,9 +76,11 @@
                 
                 <select name="banner_id" id="banner-id" class="w-[150px] rounded-full text-center cursor-pointer">
                 <option value="<?= $visualeditor->banner_id ?>">list-banner (<?= $visualeditor->banner_id ?>)</option>
-                <option value="2">2</option>
-                <option value="1">1</option>
-                <option value="33">33</option>   
+                <?php foreach ($banner1 as $ban): ?>
+                <option value="<?= $ban->id?>"><?=($ban->id)?></option>
+                <?php endforeach; ?>
+                <!-- <option value="1">1</option>
+                <option value="33">33</option>    -->
               </select>
               <button type="submit" ><i class="fa-solid fa-display"></i></button>
               </div>
@@ -131,7 +133,7 @@
                             </div>
                             <!-- Modal footer -->
                             <div class="flex items-center p-6 space-x-2 rounded-b border-t border-gray-200 dark:border-gray-600">
-                            <button type="submit" class="bg-[#ccc] w-[50px] rounded-lg">Save</button>
+                            <button  type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">I accept</button>
                         </div>
                     </div>
                     <div class="md:w-[300px] w-full bg-white rounded-lg  md:ml-5 px-5 mx-auto">
@@ -337,8 +339,11 @@
 
                           </div>
 
-                        <div class="block right-5 z-10 cursor-pointer "> 
-                        <select name="article_id" id="article-id" class="w-[350px] rounded-full text-center cursor-pointer">
+                   
+                              <h1 class="text-center text-[40px] font-bold mt-[200px]">Nos articles</h1>
+                            
+                              <div class="block right-5 z-10 cursor-pointer "> 
+                        <select name="article_id" id="article-id" class="w-[150px] rounded-full text-center cursor-pointer">
                         <option value="<?= $visualeditor->article_id ?>">testimonial (<?= $visualeditor->article_id ?>)</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -347,7 +352,6 @@
                       </select>
                       <button type="submit" ><i class="fa-solid fa-display"></i></button>
                   </div>
-                              <h1 class="text-center text-[40px] font-bold mt-[200px]">Nos articles</h1>
                  
            
                               
@@ -369,15 +373,15 @@
               </div>
             <div class="py-6 px-6 lg:px-8">
              
-              <div class="max-w-[500px] h-[554px] border mx-auto rounded-lg relative p-5 ">
+              <div class="max-w-[600px]  border mx-auto rounded-lg relative p-5 ">
                 <div class="  ">
-                  <img src="../img/news3.jpg" alt="" class="mx-auto mb-5">
+                  <img src="<?=$article->img_url?>" alt="" class="mx-auto mb-5">
 
                   <textarea class="text-bold text-[24px] bg-transparent border-0 leading-[32px]" name="title_article" id="title-article" rows="3"><?=$article->title?></textarea>                        
                   <input class="text-[#FF7D66] bg-[#FF7D6626] mt-3 mb-3" name="category" maxlength="255" id="category" value="<?=$article->category?>">
-                  <textarea class="bg-transparent border-0" name="description_article" id="description-article" rows="3"><?=$article->description?></textarea>
+                  <textarea class="bg-transparent border-0" name="description_article" id="description-article" rows="8"><?=$article->description?></textarea>
                  
-                  <div class="border rounded-full w-[150px] h-[39px] leading-[39px] text-center mt-3 mb-3 absolute border-[#049BF7] bottom-0"><a class=" text-[#049BF7]" href="">Lire l’article</a></div>
+                  <div class="border-2 rounded-full w-[150px] h-[39px] leading-[39px] text-center mt-3 mb-3 absolute border-[#049BF7] bottom-0"><a class=" text-[#049BF7]" href="">Lire l’article</a></div>
                
                 </div>
               
@@ -388,7 +392,7 @@
                <button  type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">I accept</button>
               </div>                            
               </div>
-              <div class="w-[400px] h-full mx-auto border rounded-lg p-5 bg-white absolute right-5">
+              <div class="w-[400px]  mx-auto border rounded-lg p-5 bg-white absolute right-5">
                 <h3 class="text-[24px] font-semibold text-center bg-[#ccc]">Dashboard</h3>
                
     
@@ -400,7 +404,7 @@
                       ?>
 
                    <h1 class="font-semibold mt-5 mb-5 ">img-url</h1>
-                  <img src="../img/news3.jpg" alt="">
+                  <img src="<?=$article->img_url?>" alt="" class="mx-auto">
                
                   <input type="text" name="img_url" required="required" maxlength="255" id="img-url" value="<?= $article->img_url?>">
                   <h1 class="font-semibold mt-5 mb-5 ">article-url</h1>
